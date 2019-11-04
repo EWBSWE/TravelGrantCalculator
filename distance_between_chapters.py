@@ -1,4 +1,5 @@
 #!/usr/bin/env/ python
+# -*- encoding:UTF -*-
 import numpy as np
 
 def reduced_latitude(lat):
@@ -31,26 +32,27 @@ def lambert(c1, c2, unit='m'):
     return d
 
 chapters = []
-ignore_list = ['Malmö',
+ignore_list = [#'Malmö',
                #'Lund',
-               'Chalmers',
+               #'Chalmers',
                #'Göteborg',
                #'KTH',
-               'Stockholm',
+               #'Stockholm',
                #'Luleå',
-               'Karlstad',
+               #'Karlstad',
                #'Uppsala',
-               'Helsingborg',
+               #'Helsingborg',
                #'Linköping'
+               #'Örebro'
                ]
 
-to_city = 'Göteborg'
+to_city = 'Linköping'
 destination = None
 
 max_cost = 12500 # SEK
 
 
-with open('Chapter_Coordinates.csv', 'r') as data_file:
+with open('Chapter_Coordinates.csv', 'r', encoding='utf-8') as data_file:
     for line in data_file:
         if '#' in line:
             continue
@@ -69,6 +71,8 @@ with open('Chapter_Coordinates.csv', 'r') as data_file:
 for c in chapters:
     if c[0] == to_city:
         destination = c
+
+print(chapters)
 
 if not destination:
     print('Could not find the destination "%s" in the the list of chapters!' % to_city)
